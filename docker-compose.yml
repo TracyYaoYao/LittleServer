@@ -1,0 +1,15 @@
+version: '3.1'
+
+services:
+  server_dc:
+    build: .
+    # image:
+    # command:
+    ports:
+      - 5000:5000
+   redis_dc:
+     container_name: redis_dc
+     image: redis
+     command: --requirepass password
+     ports:
+       - 6379:6379
