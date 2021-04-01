@@ -4,12 +4,12 @@ services:
   server_dc:
     build: .
     # image:
-    # command:
+    command: flask run -h 0.0.0.0 -p 5000
     ports:
       - 5000:5000
-   redis_dc:
-     container_name: redis_dc
-     image: redis
-     command: --requirepass password
-     ports:
-       - 6379:6379
+  redis_dc:
+    container_name: redis_dc
+    image: redis
+    command: --requirepass password
+    ports:
+      - 6379:6379
