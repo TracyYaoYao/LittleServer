@@ -1,4 +1,4 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,36 +8,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
 
-    <style type="text/css">
-        body {
-            font-size: 12px;
-            background-color: #FFFFFF;
-            color: #404040;
-            font-family: "Open Sans", Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-        }
-
-        a:visited {
-            color: #0075c9;
-        }
-
-        a:hover {
-            color: #009bdf;
-        }
-
-        a {
-            text-decoration: none;
-            line-height: 40px;
-        }
-
-        button {
-            background-color: transparent;
-            border: 0;
-        }
-    </style>
-
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css"
         rel="stylesheet" media="screen,projection" />
+
+    <link rel="stylesheet" type="text/css" href="/static/TinyURL/css/home.css">
+    <link rel="shortcut icon" href="/static/TinyURL/image/favicon.ico">
 
 </head>
 
@@ -57,6 +33,7 @@
 			<div style="font-size: 12px;">
 				<div class="row">
 					<form class="col s12">
+
 						<div class="row">
 							<div class="input-field col s12">
 								<input placeholder="https / http ..." id="enc_source" type="text" class="validate">
@@ -79,11 +56,13 @@
 				</div>
 
 				<script type="text/javascript">
+
 					function enc() {
 						$.ajax({
 							'url': '/api/tinyurl/encode',
+                            {#这个url对应#}
 							'data': {
-								"text": $('#enc_source').val(),
+								"surl": $('#enc_source').val(),
 							},
 							'type': 'post',
 							'dataType': "text",
@@ -101,7 +80,7 @@
 						$.ajax({
 							'url': '/api/tinyurl/decode',
 							'data': {
-								"text": $('#dec_source').val(),
+								"turl": $('#dec_source').val(),
 							},
 							'type': 'post',
 							'dataType': "text",

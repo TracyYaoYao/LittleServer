@@ -2,11 +2,11 @@ version: '3.1'
 
 services:
   server_dc:
-    build: .
-    # image:
-    command: flask run -h 0.0.0.0 -p 5000
+    # build: .
+    image: binacslee/tracy-server:github-ci
+    command: python manage.py runserver 0.0.0.0:8000
     ports:
-      - 5000:5000
+      - 8000:8000
   redis_dc:
     container_name: redis_dc
     image: redis
