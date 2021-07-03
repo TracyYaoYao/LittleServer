@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 import django_redis
 from django.http import HttpResponse, JsonResponse
-# from .tinyurlScv import tinyurlSvcImpl
 from django.views.decorators.csrf import csrf_exempt
 from .Service.tinyurlScv import tinyurlSvcImpl
 
@@ -33,3 +32,6 @@ def tinyurlEncode(request):
 def tinyurlDecode(request):
     turl = request.POST.get('turl', None)
     return HttpResponse(tinyurlSvcImpl().DecodeURL(turl))
+
+def tinyurlRedirect(request, turl):
+    return redirect(tinyurlSvcImpl().SearchURL(turl))

@@ -2,7 +2,7 @@ import hashlib
 from .configSvc import configSvcImpl
 from django.core.cache import cache
 from .redisScv import CacheScv
-
+from django.utils import timezone
 
 class tinyurlSvcImpl:
     def __init__(self):
@@ -29,6 +29,12 @@ class tinyurlSvcImpl:
         # 3. return the first one. rand() is better.
         return res[0]
 
+    def PasteEncode(self, content):
+        content = content+timezone.now().strftime("%Y-%m-%d %H:%M:%S")
+        print(content)
+        return self.encode(content)
+
+
     def EncodeURL(self, url):
         turl = self.encode(url)  # 把原始url压缩
         CacheScv().CreateURLCache(turl, url)  # 写入redis
@@ -36,3 +42,6 @@ class tinyurlSvcImpl:
 
     def DecodeURL(self, turl):
         return CacheScv().SearchURL(turl[-6:])
+
+    def SearchURL(self, turl):
+        return CacheScv().Get(turl[:])

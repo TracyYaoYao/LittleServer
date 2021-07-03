@@ -4,7 +4,7 @@ services:
   server_dc:
     # build: .
     image: binacslee/tracy-server:github-ci
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8000 --settings=LittleServer.settings.dev
     ports:
       - 8000:8000
   redis_dc:

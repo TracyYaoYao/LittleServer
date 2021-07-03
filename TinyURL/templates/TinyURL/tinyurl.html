@@ -3,102 +3,136 @@
 <html lang="en">
 
 
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+
+    <style type="text/css">
+        body {
+            font-size: 12px;
+            background-color: #FFFFFF;
+            color: #404040;
+            font-family: "Open Sans", Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+        }
+
+        a:visited {
+            color: #0075c9;
+        }
+
+        a:hover {
+            color: #009bdf;
+        }
+
+        a {
+            text-decoration: none;
+            line-height: 40px;
+        }
+
+        h1, h2, h3, h4, h5 {
+            color: #ff7043;
+        }
+
+        button {
+            background-color: transparent;
+            border: 0;
+        }
+
+
+    </style>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css"
-        rel="stylesheet" media="screen,projection" />
+    <link href="{% static 'PasteBin/css/my.css' %}" type="text/css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="/static/TinyURL/css/home.css">
-    <link rel="shortcut icon" href="/static/TinyURL/image/favicon.ico">
 
 </head>
 
 
-<title>Kiki - TinyURL</title>
+<title>KiKi - TinyURL</title>
 
 
+<div class="container valign-wrapper" style="height: 90vh;">
+    <div class="section center valign" style="width: 100%;">
+        <h5>TinyURL Service</h5>
+        <div class="section" style="height: 10vh;">
+            <div class="row">
+                <div class="col s12 grey-text text-darken-1">The md5 algorithm is used by default</div>
+            </div>
+        </div>
+        <div style="font-size: 12px;">
+            <div class="row">
+                <form class="col s12">
 
-	<div class="container valign-wrapper" style="height: 90vh;">
-		<div class="section center valign" style="width: 100%;">
-			<h5>短链接生成服务</h5>
-			<div class="section" style="height: 10vh;">
-				<div class="row">
-					<div class="col s12 grey-text text-darken-1">默认使用md5算法</div>
-				</div>
-			</div>
-			<div style="font-size: 12px;">
-				<div class="row">
-					<form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="https / http ..." id="enc_source" type="text" class="validate">
+                            <label for="enc_source">Original_URL</label>
+                        </div>
+                    </div>
+                    <div class="row" style="font-size: 20px;">
+                        <div class="col s12">
+                            <button class="btn waves-effect waves-light deep-orange lighten-1" type="button"
+                                    onclick="enc()" value="enc" id="encid">Encode
+                                <i class="material-icons right"><span class="material-icons-outlined">arrow_right</span></i>
+                            </button>
+                            <button class="btn waves-effect waves-light deep-orange lighten-1" type="button"
+                                    onclick="dec()" value="dec" id="decid">Decode
+                                <i class="material-icons right"><span class="material-icons-outlined">arrow_right</span></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input placeholder="kiki.binacs.cn/r/ ..." id="dec_source" type="text" class="validate">
+                            <label for="dec_source">Tiny_URL</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
-						<div class="row">
-							<div class="input-field col s12">
-								<input placeholder="https / http ..." id="enc_source" type="text" class="validate">
-								<label for="enc_source">原始URL</label>
-							</div>
-						</div>
-						<div class="row" style="font-size: 20px;">
-							<div class="col s12">
-								<button class="white" type="button" onclick="enc()" value="enc" id="encid">编码</button>
-								<button class="white" type="button" onclick="dec()" value="dec" id="decid">解码</button>
-							</div>
-						</div>
-						<div class="row">
-							<div class="input-field col s12">
-								<input placeholder="kiki.binacs.cn/r/ ..." id="dec_source" type="text" class="validate">
-								<label for="dec_source">TinyURL</label>
-							</div>
-						</div>
-					</form>
-				</div>
+            <script type="text/javascript">
 
-				<script type="text/javascript">
+                function enc() {
+                    $.ajax({
+                        'url': '/api/tinyurl/encode',
+                        {#这个url对应#}
+                        'data': {
+                            "surl": $('#enc_source').val(),
+                        },
+                        'type': 'post',
+                        'dataType': "text",
+                        'success': function (data) {
+                            console.log("enc success")
+                            $('#dec_source').val(data);
+                        },
+                        error: function () {
+                            alert("异常！");
+                        }
+                    })
+                }
 
-					function enc() {
-						$.ajax({
-							'url': '/api/tinyurl/encode',
-                            {#这个url对应#}
-							'data': {
-								"surl": $('#enc_source').val(),
-							},
-							'type': 'post',
-							'dataType': "text",
-							'success': function(data) {
-								console.log("enc success")
-								$('#dec_source').val(data);
-							},
-							error: function() {
-								alert("异常！");
-							}
-						})
-					}
-
-					function dec() {
-						$.ajax({
-							'url': '/api/tinyurl/decode',
-							'data': {
-								"turl": $('#dec_source').val(),
-							},
-							'type': 'post',
-							'dataType': "text",
-							'success': function(data) {
-								console.log("dec success")
-								$('#enc_source').val(data);
-							},
-							error: function() {
-								alert("异常！");
-							}
-						})
-					}
-				</script>
-			</div>
-		</div>
-	</div>
-
-
+                function dec() {
+                    $.ajax({
+                        'url': '/api/tinyurl/decode',
+                        'data': {
+                            "turl": $('#dec_source').val(),
+                        },
+                        'type': 'post',
+                        'dataType': "text",
+                        'success': function (data) {
+                            console.log("dec success")
+                            $('#enc_source').val(data);
+                        },
+                        error: function () {
+                            alert("异常！");
+                        }
+                    })
+                }
+            </script>
+        </div>
+    </div>
+</div>
 
 
 <footer class="white">
@@ -107,15 +141,16 @@
         <div class="container center">
             <br>
             <a href="http://beian.miit.gov.cn/" target="_blank">TODO</a>
-             - Powered by <a href="https://github.com/TracyYaoYao/LittleServer">server</a>
+            <a style="color:grey">- Powered by</a>
+            <a href="https://github.com/TracyYaoYao/LittleServer">server</a>
             <br>
         </div>
     </div>
 </footer>
 
 
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 </body>
 

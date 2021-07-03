@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+
+    <style type="text/css">
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            font-size: 12px;
+            background-color: #FFFFFF;
+            color: #404040;
+            font-family: "Open Sans", "Helvetica", "Tahoma", "Arial", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", "sans-serif";
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+
+        a:link {
+            color: #0075c9;
+        }
+
+        a:visited {
+            color: #0075c9;
+        }
+
+        a:hover {
+            color: #009bdf;
+        }
+
+        a {
+            text-decoration: none;
+            line-height: 40px;
+        }
+
+        h1, h2, h3, h4, h5, h6, h7 {
+            color: #ff7043;
+        }
+
+        .col s4{
+            color: #ff7043;
+        }
+
+        button {
+            background-color: transparent;
+            border: 0;
+        }
+    </style>
+
+    <link rel="stylesheet" href="{% static 'PasteBin/css/code.css' %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css"
+          rel="stylesheet" media="screen,projection">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+</head>
+
+
+<title>KiKi - Pages</title>
+
+
+<div class="container valign-wrapper">
+    <div class="section" style="width: 100%;">
+        <div class="section center valign" style="width: 100%;">
+            <h5>Pastebin Pages {{ TinyURL }}</h5>
+            <div class="section" style="height: 10vh;">
+                <div class="row grey-text text-darken-1">
+                    <div class="col s12">Render using Markdown syntax by default</div>
+                </div>
+                <div class="row blue-text text-darken-2">
+                    <div class="col s4" >Poster: {{ poster }}</div>
+                    <div class="col s4" >Syntax: {{ syntax }}</div>
+                    <div class="col s4" >Create At: {{ createTime }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="section" style="width: 100%;">
+            <div class="section" style="height: 10vh;">
+                <div class="row">
+                    <div class="col s12">{{ PasteBinContent | safe }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="white">
+    <div class="container"></div>
+    <div class="footer-copyright">
+        <div class="container center">
+            <br>
+            <a href="http://beian.miit.gov.cn/" target="_blank">TODO</a>
+            <a style="color:grey">- Powered by</a>
+            <a href="https://github.com/TracyYaoYao/LittleServer">server</a>
+            <br>
+        </div>
+    </div>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+
+</html>

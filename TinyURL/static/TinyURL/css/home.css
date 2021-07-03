@@ -3,6 +3,7 @@ body {
     background-color: #FFFFFF;
     color: #404040;
     font-family: "Open Sans", Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    background-image: url('../image/favicon.ico');
 }
 
 a:visited {
