@@ -7,7 +7,7 @@ DEBUG = True
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379",   # 把这里缓存你的redis服务器ip和port
+        "LOCATION": "redis://redis_dc:6379",   # 在docker容器里 可以直连接。所以只需要写redis容器的名称和port
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "CONNECTION_POOL_KWARGS": {"max_connections": 100},
