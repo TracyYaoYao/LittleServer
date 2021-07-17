@@ -2,6 +2,9 @@ from .base import *
 DEBUG = True
 
 
+
+ALLOWED_HOSTS = ['*']
+
 # 1. 先配置环境包
 # 2. 把redis作为Django的缓存设置
 CACHES = {
