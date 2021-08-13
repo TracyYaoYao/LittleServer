@@ -17,10 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from TinyURL import views
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('TinyURL.urls')),
     path('', include('PasteBin.urls')),
+    path('', include('FileSave.urls')),
 
 ]

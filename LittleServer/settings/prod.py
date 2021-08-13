@@ -1,7 +1,17 @@
 from .base import *
+
 DEBUG = True
 
+from qcloud_cos import CosConfig
+from qcloud_cos import CosS3Client
+from qcloud_cos import CosServiceError
+from qcloud_cos import CosClientError
 
+import sys
+import logging
+import time
+import requests
+from urllib.parse import quote_plus
 
 ALLOWED_HOSTS = ['*']
 
@@ -24,3 +34,8 @@ CACHES = {
 # 将session的存储到Django缓存中
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
+
+
+
+
+

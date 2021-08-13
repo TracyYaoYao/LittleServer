@@ -2,14 +2,19 @@ version: '3.1'
 
 services:
   server_dc:
-    # build: .
-    image: binacslee/tracy-server:github-ci
+    build: .
+    # image: binacslee/tracy-server:github-ci
     command: python manage.py runserver 0.0.0.0:8000 --settings=LittleServer.settings.prod
     ports:
       - 8000:8000
+    environment:
+      - SECRET_ID=test_secreteID
+      - SECRET_KEY=test_secreteKEY
+
   redis_dc:
     container_name: redis_dc
     image: redis
     command: --requirepass password
     ports:
       - 6379:6379
+

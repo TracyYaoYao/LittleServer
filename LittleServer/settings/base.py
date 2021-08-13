@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'TinyURL',
     'PasteBin',
-
+    'FileSave',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +133,7 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+secret_id = os.environ['SECRET_ID']
+secret_key = os.environ['SECRET_KEY']
