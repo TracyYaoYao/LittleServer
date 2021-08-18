@@ -1,12 +1,23 @@
 version: '3.1'
 
 services:
-  server_dc:
+  server_dc_http:
     build: .
     # image: binacslee/tracy-server:github-ci
     command: python manage.py runserver 0.0.0.0:8000 --settings=LittleServer.settings.prod
     ports:
-      - 8000:8000
+      - 80:8000
+    environment:
+      - SECRET_ID=test_secreteID
+      - SECRET_KEY=test_secreteKEY
+  server_dc_https:
+    build: .
+    # image: binacslee/tracy-server:github-ci
+    command: python manage.py runserver_plus 0.0.0.0:8000 --settings=LittleServer.settings.prod --cert-file=/work/kiki.zone.crt --key-file=/work/kiki.zone.key
+    volumes:
+      - /root/tracy/web:/work
+    ports:
+      - 443:8000
     environment:
       - SECRET_ID=test_secreteID
       - SECRET_KEY=test_secreteKEY

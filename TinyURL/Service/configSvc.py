@@ -1,6 +1,6 @@
 class configSvcImpl:
     def __init__(self):
-        self.protocol = "http"
+        self.protocol = "https"
         self.domain = "kiki.zone"
         # self.domain = "127.0.0.1:8000"
 

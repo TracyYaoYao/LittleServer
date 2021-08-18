@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-%we-yfnil^&0-wv4-sq!nc#=80z(u)#&4b15s02o*6&5v_n5$t
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+SECURE_SSL_REDIRECT = True
 
 ALLOWED_HOSTS = []
 
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'werkzeug_debugger_runserver',
+    'django_extensions',
     'TinyURL',
     'PasteBin',
     'FileSave',
