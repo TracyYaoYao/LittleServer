@@ -64,10 +64,24 @@ LittleServer
 
 ### 主要功能
 
-- 基于  实现tinyURL功能
-- 基于markdown实现pasteBin功能
-- 基于腾讯云对象存储服务（COS）实现FileSave功能
+- 实现 TinyURL 功能
+- 基于 Markdown 语法渲染以及 TinyURL 实现 PasteBin 功能
+- 基于腾讯云对象存储服务（COS）实现 FileSave 功能
+- 访问 [kiki.zone](https://www.kiki.zone.com) 即可
 
 
 
-### K8S线上部署
+### 镜像构建
+
+- 使用 GitHub Action 自动构建
+
+
+
+### 线上部署
+
+- 在服务器上使用docker-compse配置部署
+
+
+
+
+
