@@ -73,7 +73,7 @@ LittleServer
 
 ### 镜像构建
 
-- 使用 GitHub Action 自动构建
+- 使用 GitHub Action 自动构建镜像，完成后自动发布到 Docker Hub 上
 
 
 

@@ -15,7 +15,8 @@ services:
     # image: binacslee/tracy-server:github-ci
     command: python manage.py runserver_plus 0.0.0.0:8000 --settings=LittleServer.settings.prod --cert-file=/work/kiki.zone.crt --key-file=/work/kiki.zone.key
     volumes:
-      - /root/tracy/web:/work
+     - /root/tracy/web:/work
+    # - /Users/tracy/web:/work
     ports:
       - 443:8000
     environment:

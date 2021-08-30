@@ -16,7 +16,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-
+# print('in base')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -26,10 +26,10 @@ SECRET_KEY = 'django-insecure-%we-yfnil^&0-wv4-sq!nc#=80z(u)#&4b15s02o*6&5v_n5$t
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-SECURE_SSL_REDIRECT = True
 
 ALLOWED_HOSTS = []
 
+SECURE_SSL_REDIRECT = True
 
 # Application definition
 

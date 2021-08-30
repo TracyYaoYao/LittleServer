@@ -1,6 +1,8 @@
 from .base import *
 DEBUG = True
 
+# print('in dev')
+
 
 # 1. 先配置环境包
 # 2. 把redis作为Django的缓存设置

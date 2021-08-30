@@ -1,10 +1,10 @@
 import hashlib
-from .configSvc import configSvcImpl
+from .configSvc import ConfigSvcImpl
 from django.core.cache import cache
-from .redisScv import CacheScv
+from .redisScv import CacheScvImpl
 from django.utils import timezone
 
-class tinyurlSvcImpl:
+class TinyurlSvcImpl:
     def __init__(self):
         self.INF = 0x3FFFFFFF
         self.MASK = 0x0000003D
@@ -37,11 +37,11 @@ class tinyurlSvcImpl:
 
     def EncodeURL(self, url):
         turl = self.encode(url)  # 把原始url压缩
-        CacheScv().CreateURLCache(turl, url)  # 写入redis
-        return configSvcImpl().GetDomainSite() + "/r/" + turl
+        CacheScvImpl().CreateURLCache(turl, url)  # 写入redis
+        return ConfigSvcImpl().GetDomainSite() + "/r/" + turl
 
     def DecodeURL(self, turl):
-        return CacheScv().SearchURL(turl[-6:])
+        return CacheScvImpl().SearchURL(turl[-6:])
 
     def SearchURL(self, turl):
-        return CacheScv().Get(turl[:])
+        return CacheScvImpl().Get(turl[:])

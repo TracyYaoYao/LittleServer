@@ -1,6 +1,6 @@
 from django.core.cache import cache
 
-class CacheScv():
+class CacheScvImpl:
     def CreateURLCache(self, turl, url):
         cache.set(turl, url, timeout=None)  # 永不超时
 

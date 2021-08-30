@@ -18,7 +18,7 @@ def filePut(request):
     if request.method == 'POST':
         passKey = request.POST.get('key', None)
         if passKey != 'go':
-            return JsonResponse(('pass key error, retry', 0), safe = False)
+            return JsonResponse(('pass key error, retry'), safe = False)
         else:
             myFile = request.FILES.get('file', None)  # 获取上传文件，没有文件的话，默认为False
         if not myFile:

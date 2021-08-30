@@ -7,7 +7,7 @@ class Paste(models.Model):
     poster = models.CharField(max_length=30)
     content = models.TextField()    # max paste size is 4kb
     syntax = models.CharField(max_length=30)  # 目前只支持markdown语法，这一行数据暂时不起作用
-    TinyURL = models.URLField()   # 不会去访问该url 验证是否正确
+    TinyURL = models.URLField()
     createTime = models.DateTimeField()
 
     def __str__(self):
