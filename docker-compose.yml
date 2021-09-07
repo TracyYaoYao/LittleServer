@@ -4,18 +4,21 @@ services:
   server_dc_http:
     build: .
     # image: binacslee/tracy-server:github-ci
-    command: python manage.py runserver 0.0.0.0:8000 --settings=LittleServer.settings.prod
+    command: hack 8000 PROD
     ports:
       - 80:8000
     environment:
       - SECRET_ID=test_secreteID
       - SECRET_KEY=test_secreteKEY
+    depends_on:
+      - "redis_dc"
+      - "mysql_dc"
   server_dc_https:
     build: .
     # image: binacslee/tracy-server:github-ci
-    command: python manage.py runserver_plus 0.0.0.0:8000 --settings=LittleServer.settings.prod --cert-file=/work/kiki.zone.crt --key-file=/work/kiki.zone.key
+    command: hack 8000 PROD-SSL /work/kiki.zone.crt /work/kiki.zone.key
     volumes:
-     - /root/tracy/web:/work
+      - /root/tracy/web:/work
     # - /Users/tracy/web:/work
     ports:
       - 443:8000
@@ -30,3 +33,19 @@ services:
     ports:
       - 6379:6379
 
+  mysql_dc:
+    container_name: mysql_dc
+    image: mysql
+    command: [
+      '--default_authentication_plugin=mysql_native_password',
+      '--character-set-server=utf8mb4',
+      '--collation-server=utf8mb4_unicode_ci'
+    ]
+    # volumes:
+    #   - /var/lib/mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+      - 33060:33060
+    environment:
+      MYSQL_DATABASE: mysqldb
+      MYSQL_ROOT_PASSWORD: password
