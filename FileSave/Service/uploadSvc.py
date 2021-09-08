@@ -13,20 +13,18 @@ from LittleServer.settings.prod import secret_id, secret_key
 logging.basicConfig(level=logging.INFO, stream=sys.stdout)
 
 
-
 region = 'ap-guangzhou'  # 替换为用户的region
 # token = None   # 使用临时密钥需要传入Token，默认为空,可不填
 config = CosConfig(Region=region, SecretId=secret_id, SecretKey=secret_key)  # 获取配置对象
 client = CosS3Client(config)
 
 
-
 class Upload():
     def upload(self, localFile):    # 文件流 简单上传
         response = client.list_buckets()
         name = localFile.name.split('.')
-        t = time.strftime("%Y-%m-%d %X", time.localtime())
-        url_s = name[0] + '%' + t + '.' + name[1]
+        now_time = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
+        url_s = name[0] + '%' + now_time + '.' + name[1]
         url_key = quote_plus(url_s.encode('utf-8'))
 
         response = client.put_object(

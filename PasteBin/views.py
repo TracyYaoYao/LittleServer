@@ -9,6 +9,8 @@ from TinyURL.Service.configSvc import ConfigSvcImpl
 from TinyURL.Service.redisScv import CacheScvImpl
 from django.utils import timezone
 from .Service.pasteSvc import PasteSvcImpl
+from time import strftime
+import time
 
 
 # Create your views here.
@@ -25,6 +27,8 @@ def pasteSubmit(request):
     if not content:
         return JsonResponse(("ERROR: Empty paste is not allowed"), safe=False)
     else:
+        now_time = strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
+        content += now_time
         turl = TinyurlSvcImpl().PasteEncode(content)
         CacheScvImpl().CreateURLCache(turl, turl)  # 写入redis
         paste = Paste(poster=poster, content=content, createTime=timezone.now(), syntax=syntax, TinyURL=turl)

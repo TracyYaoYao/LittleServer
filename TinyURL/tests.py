@@ -45,10 +45,9 @@ class TinyURLTest(unittest.TestCase):
         print(r.text)
         self.assertEqual(r.text, assert_title)
 
-
-
 if __name__ == '__main__':
     now = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
+    print(now)
     testunit = unittest.TestSuite()
     testunit.addTest(TinyURLTest("testTinyUrl"))
     HtmlFile = "test_report.html"
