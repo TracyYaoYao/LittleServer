@@ -8,3 +8,4 @@ django-werkzeug-debugger-runserver==0.3.1
 cryptography==3.3.2
 pyOpenSSL==20.0.1
 mysqlclient==2.0.3
+coverage==5.5
