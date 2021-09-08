@@ -31,11 +31,10 @@ class TinyURLTest(unittest.TestCase):
         print('tests end')
 
 
+
     @parameterized.expand([
-        ('pasteBin: None-url', svc_prod_api[svc_name[1]], {'surl': ''}, '"ERROR: blank url..."'),
-        ('tinyURL: Err-url',svc_prod_api[svc_name[1]], {'surl': 'http123'}, '"ERROR: url must be started with http:/https:"'),
-        ('tinyURL: http-url',svc_prod_api[svc_name[1]], {'surl': 'http://binacs.cn'}, "https://kiki.zone/r/BVniuy"),
-        ('tinyURL: https-url',svc_prod_api[svc_name[1]], {'surl': 'https://binacs.cn'}, "https://kiki.zone/r/6VniAr"),
+        ('pasteBin: None-url', svc_prod_api[svc_name[1]], {'poster': '', 'syntax': '', 'content':''}, '"ERROR: Empty paste is not allowed"'),
+        ('pasteBin: None-url', svc_prod_api[svc_name[1]], {'poster': '', 'syntax': '', 'content':'tracy'}, ''),
 
     ])
 
