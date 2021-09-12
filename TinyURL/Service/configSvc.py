@@ -1,6 +1,6 @@
 class ConfigSvcImpl:
     def __init__(self):
-        self.protocol = "https"
+        self.protocol = "http"
         self.domain = "kiki.zone"
         # self.protocol_dev = "http"
         # self.domain_dev = "127.0.0.1:8006"

@@ -1,37 +1,37 @@
 version: '3.1'
 
 services:
+  nginx_dc:
+    image: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./_nginx:/etc/nginx/conf.d
+    depends_on:
+      - "server_dc_http"
+
   server_dc_http:
     build: .
     # image: binacslee/tracy-server:github-ci
     command: hack 8000 PROD
-    ports:
-      - 80:8000
+    # ports:
+    #   - 80:8000
     environment:
       - SECRET_ID=test_secreteID
       - SECRET_KEY=test_secreteKEY
     depends_on:
       - "redis_dc"
       - "mysql_dc"
-  server_dc_https:
-    build: .
-    # image: binacslee/tracy-server:github-ci
-    command: hack 8000 PROD-SSL /work/kiki.zone.crt /work/kiki.zone.key
-    volumes:
-      - /root/tracy/web:/work
-    # - /Users/tracy/web:/work
-    ports:
-      - 443:8000
-    environment:
-      - SECRET_ID=test_secreteID
-      - SECRET_KEY=test_secreteKEY
 
   redis_dc:
     container_name: redis_dc
     image: redis
     command: --requirepass password
-    ports:
-      - 6379:6379
+    # volumes:
+    #   - /var/lib/redis:/data/
+    # ports:
+    #   - 6379:6379
 
   mysql_dc:
     container_name: mysql_dc
@@ -43,9 +43,9 @@ services:
     ]
     # volumes:
     #   - /var/lib/mysql:/var/lib/mysql
-    ports:
-      - 3306:3306
-      - 33060:33060
+    # ports:
+    #   - 3306:3306
+    #   - 33060:33060
     environment:
       MYSQL_DATABASE: mysqldb
       MYSQL_ROOT_PASSWORD: password

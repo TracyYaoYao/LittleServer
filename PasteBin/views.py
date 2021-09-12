@@ -28,8 +28,7 @@ def pasteSubmit(request):
         return JsonResponse(("ERROR: Empty paste is not allowed"), safe=False)
     else:
         now_time = strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
-        content += now_time
-        turl = TinyurlSvcImpl().PasteEncode(content)
+        turl = TinyurlSvcImpl().PasteEncode(content+now_time)
         CacheScvImpl().CreateURLCache(turl, turl)  # 写入redis
         paste = Paste(poster=poster, content=content, createTime=timezone.now(), syntax=syntax, TinyURL=turl)
         paste.save()
